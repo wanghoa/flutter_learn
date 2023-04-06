@@ -16,4 +16,5 @@ rootProject.name = "flutter_learn"
 include ':app'
 
 
-
+setBinding(new Binding([gradle:this]))
+evaluate(new File(settingsDir,'flutter_learn_module/.android/include_flutter.groovy'))
