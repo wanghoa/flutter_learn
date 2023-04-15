@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dim_shadow">#FF858685</color>
+
+    <color name="bottom_button_color">#ff8c8c8c</color>
+    <color name="video_time_color">#ffa4a4a4</color>
 </resources>
