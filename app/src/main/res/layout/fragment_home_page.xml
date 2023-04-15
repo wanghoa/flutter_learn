@@ -13,7 +13,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#drawable/home_gradient"
+        android:background="@drawable/home_gradient"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
