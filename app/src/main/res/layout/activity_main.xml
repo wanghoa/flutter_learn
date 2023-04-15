@@ -6,13 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_friend"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btn_home"
+        style="@style/BottomButtonStyle"
+        android:text="首页"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/bt_friend" />
+
+    <Button
+        android:id="@+id/bt_friend"
+        style="@style/BottomButtonStyle"
+        android:text="朋友"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btn_home" />
+
+    <ImageButton
+        android:id="@+id/btn_add"
+        style="@style/BottomButtonStyle"
+        android:src="@mipmap/post"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/bt_friend"
+        app:layout_constraintRight_toLeftOf="@+id/bt_message" />
+    <Button
+        android:id="@+id/bt_message"
+        style="@style/BottomButtonStyle"
+        android:text="消息"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/btn_add" />
+
+    <Button
+        android:id="@+id/bt_mine"
+        style="@style/BottomButtonStyle"
+        android:text="我的"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/bt_message" />
 </androidx.constraintlayout.widget.ConstraintLayout>
