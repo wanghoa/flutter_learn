@@ -26,7 +26,7 @@ class PhotoPickerPage extends StatelessWidget {
             router.popRoute();
           },
         ),
-      )
+      ),
       Align(
         alignment: Alignment.bottomCenter,
         child: Padding(padding: EdgeInsets.only(bottom: 85),
