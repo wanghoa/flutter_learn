@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn_module/mine_page.dart';
+import 'package:flutter_learn_module/widget/photo_picker.dart';
 
 import 'gen/assets.gen.dart';
 import 'player_page/player_page.dart';
@@ -33,9 +34,16 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
   }
 
   @override
-  Future<bool> popRoute() {
-    // TODO: implement popRoute
-    throw UnimplementedError();
+  Future<bool> popRoute({Object? params}) {
+    if (params != null) {
+      _boolResultCompleter.complete(params);
+    }
+    if(_canPop()) {
+      _page.removeLast();
+      notifyListeners();
+      return Future.value(true);
+    }
+    return _confirmExit();
   }
 
   @override
@@ -100,7 +108,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
         page = PhotoPickerPage(url ?? Assets.image.defaultPhoto.keyName);
         break;
       case playerPage:
-        page = PlayerPage(routeSettings.arguments?.toString() ?? '');
+        page = PlayerPage(videoUrl: routeSettings.arguments?.toString() ?? '');
         break;
       default:
         page = const Scaffold();
@@ -114,7 +122,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
 
   Future<bool> _confirmExit() async {
     final result = await showDialog<bool>(
-      context: navigatorKey.currentContext!,
+      context: navigatorKey.currentContext！,
       builder: (BuildContext context) {
         return AlertDialog(
           content: const Text('确认退出吗'),
