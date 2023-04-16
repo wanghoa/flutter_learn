@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_learn_module/widget/Timage.dart';
+import 'package:flutter_learn_module/widget/t_image.dart';
 
 import 'gen/assets.gen.dart';
 
