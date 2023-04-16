@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn_module/widget/faveorite_gesture/favorite_gesture.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:player/player.dart';
+import 'package:player/video_view.dart';
 
 
 /*
