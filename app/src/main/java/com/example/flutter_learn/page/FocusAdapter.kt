@@ -43,7 +43,7 @@ class FocusAdapter : RecyclerView.Adapter<FocusAdapter.VideoHolder>() {
 
     override fun onBindViewHolder(holder: VideoHolder, position: Int) {
         holder.video.apply {
-            setVideoPath("android.resource://" + context.packageName + "/" + R.raw.video1)
+            setVideoPath("android.resource://" + context.packageName + "/" + R.raw.video2)
             if (mAutoPlay && position == 0) {
                 mAutoPlay = false
             }
