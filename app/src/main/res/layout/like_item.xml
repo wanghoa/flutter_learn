@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:text="超低空"
-        android:textColor="#1681f"
+        android:textColor="@color/color_16181f"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/like_avatar"

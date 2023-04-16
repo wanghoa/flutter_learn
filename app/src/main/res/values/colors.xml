@@ -12,4 +12,5 @@
 
     <color name="bottom_button_color">#ff8c8c8c</color>
     <color name="video_time_color">#ffa4a4a4</color>
+    <color name="color_16181f">#16181f</color>
 </resources>
