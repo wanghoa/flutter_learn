@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wh/favorite_animation_icon.dart';
+
+import 'favorite_animation_icon.dart';
+
 
 /*
 绘制红心 ，计算点赞坐标
