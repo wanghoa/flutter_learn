@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_learn_module/mine_page.dart';
+import 'package:flutter_learn_module/mine_page/mine_page.dart';
 import 'package:flutter_learn_module/widget/photo_picker.dart';
 
+import 'camera_page/camera_page.dart';
 import 'gen/assets.gen.dart';
 import 'player_page/player_page.dart';
 
@@ -13,6 +14,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
   static const String minePage = '/mine';
   static const String photoPicker = '/photo_picker';
   static const String playerPage = '/player';
+  static const String cameraPage ='/camera';
 
   static const String key = 'key';
   static const String value = 'value';
@@ -109,6 +111,9 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
         break;
       case playerPage:
         page = PlayerPage(videoUrl: routeSettings.arguments?.toString() ?? '');
+        break;
+      case cameraPage:
+        page = CameraPage();
         break;
       default:
         page = const Scaffold();
