@@ -1,14 +1,44 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
-void main() => runApp(const MyApp());
+import 'package:flutter/material.dart';
+import 'package:flutter_learn_module/mc_router.dart';
+import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
+
+var router = MCRouter();
+
+/// 创建Router
+void main() {
+  runApp(const MyApp());
+  init();
+}
+
+String extStorage = '/stroage/emulated/0/Adnroid/data/com.example.wh/files';
+
+void init() {
+  print('WH-init route is: ${window.defaultRouteName}');
+
+  ///初始化页面路由，获取Native传递的参数，放入路由表
+  router.push(name: window.defaultRouteName);
+
+  ///初始化sdcard 目录
+  getExternalStorageDirectory().then((value) {
+    extStorage = value?.path ?? extStorage;
+    //Player.setCachePath(extStorage);
+  });
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // const MyApp({super.key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
+
+  ///与上方的写法有什么区别吗？
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    // GetX 改造
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -17,11 +47,16 @@ class MyApp extends StatelessWidget {
         // application has a blue toolbar. Then, without quitting the app, try
         // changing the primarySwatch below to Colors.green and then invoke
         // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or press Run > Flutter Hot Reload in a Flutter IDE). Notice that the
-        // counter didn't reset back to zero; the application is not restarted.
+        // or simply save your changes to "hot reload" in a Flutter IDE).
+        // Notice that the counter didn't reset back to zero; the application
+        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Router(
+        routerDelegate: router,
+        backButtonDispatcher: RootBackButtonDispatcher(),
+      ),
     );
   }
 }
@@ -43,6 +78,10 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
+
+//   @override
+//   State<MyHomePage> createState() => _MyHomePageState();
+// }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
