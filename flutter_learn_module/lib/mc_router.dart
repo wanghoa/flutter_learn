@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_learn_module/mine_page.dart';
 
 import 'gen/assets.gen.dart';
+import 'player_page/player_page.dart';
 
 class MCRouter extends RouterDelegate<List<RouteSettings>>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
@@ -74,13 +75,13 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
     push(name: name, arguments: arguments);
   }
 
-  Future<Object?> push({required String name, dynamic arguments}) async{
+  Future<Object?> push({required String name, dynamic arguments}) async {
     _boolResultCompleter = Completer<Object?>();
     _page.add(_createPate(RouteSettings(name: name, arguments: arguments)));
     notifyListeners();
   }
 
-  MaterialPage _createPate(RouteSettings routeSettings)  {
+  MaterialPage _createPate(RouteSettings routeSettings) {
     Widget page;
     var args = routeSettings.arguments;
     switch (routeSettings.name) {
@@ -99,12 +100,13 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
         page = PhotoPickerPage(url ?? Assets.image.defaultPhoto.keyName);
         break;
       case playerPage:
-        page = PlayerPage(routeSettings.arguments?.toString());
+        page = PlayerPage(routeSettings.arguments?.toString() ?? '');
         break;
       default:
         page = const Scaffold();
     }
-    return MaterialPage(child: page,
+    return MaterialPage(
+        child: page,
         key: Key(routeSettings.name!) as LocalKey,
         name: routeSettings.name,
         arguments: routeSettings.arguments);
