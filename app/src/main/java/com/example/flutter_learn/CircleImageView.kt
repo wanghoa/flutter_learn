@@ -48,7 +48,7 @@ class CircleImageView constructor(
         val scale = widthScale.coerceAtLeast(heightScale)
         val matrix = Matrix()
         matrix.postScale(scale, scale)
-        return Bitmap.createBitmap(sourceBitmap, 0, 0, width, height, ,matrix, true)
+        return Bitmap.createBitmap(sourceBitmap, 0, 0, width, height,matrix, true)
     }
 
     private fun drawCircleBitmapByShader(canvas: Canvas?, bitmap: Bitmap) {
