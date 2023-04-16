@@ -59,7 +59,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
 
   @override
   // TODO: implement navigatorKey
-  GlobalKey<NavigatorState>? get navigatorKey => GlobalKey<NavigatorState>();
+  GlobalKey<NavigatorState> get navigatorKey => GlobalKey<NavigatorState>();
 
   bool _onPopPage(Route route, dynamic result) {
     if (!route.didPop(result)) return false;
@@ -122,7 +122,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
 
   Future<bool> _confirmExit() async {
     final result = await showDialog<bool>(
-      context: navigatorKey.currentContext！,
+      context: navigatorKey.currentContext!,
       builder: (BuildContext context) {
         return AlertDialog(
           content: const Text('确认退出吗'),
