@@ -40,6 +40,10 @@ class MainActivity : FragmentActivity() {
         FlutterFragmentUtil.createFlutterFragment(this, "mine", "/mine")
     }
 
+    private val cameraFragment by lazy {
+        FlutterFragmentUtil.createFlutterFragment(this, "camera", "/camera")
+    }
+
     private var currentFragment: Fragment = homeFragment
 
 
@@ -53,6 +57,10 @@ class MainActivity : FragmentActivity() {
         bt_friend.setOnClickListener { showPage(it) }
         bt_message.setOnClickListener { showPage(it) }
         bt_mine.setOnClickListener { showPage(it) }
+        btn_add.setOnClickListener {
+            supportFragmentManager.beginTransaction().add(R.id.camera_container, cameraFragment)
+                .commit()
+        }
 
     }
 
