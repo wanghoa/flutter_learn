@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
  * 管理视频列表滑动
  * 视频布局管理器
  */
-class VideoLayoutManager(context: Context): LinearLayoutManager(context) {
+class VideoLayoutManager(context: Context?): LinearLayoutManager(context) {
     companion object{
         const val TAG = "Manager"
 
