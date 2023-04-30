@@ -89,6 +89,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
     _boolResultCompleter = Completer<Object?>();
     _page.add(_createPate(RouteSettings(name: name, arguments: arguments)));
     notifyListeners();
+    return _boolResultCompleter.future;
   }
 
   MaterialPage _createPate(RouteSettings routeSettings) {
