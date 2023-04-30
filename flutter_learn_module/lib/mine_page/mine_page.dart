@@ -9,6 +9,8 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
+  static const image_height = 138.5;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -18,7 +20,12 @@ class _MinePageState extends State<MinePage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [TImage(Assets.image.defaultPhoto.path)],
+      children: [
+        Container(
+            width: double.infinity,
+            height: image_height,
+            child: TImage(Assets.image.defaultPhoto.path))
+      ],
     );
   }
 }
