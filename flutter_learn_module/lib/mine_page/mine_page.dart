@@ -31,15 +31,15 @@ class _MinePageState extends State<MinePage> {
             height: image_height,
             child: GestureDetector(
                 child:
-                    TImage(_controller.backgroundUrl.value, fit: BoxFit.cover),
+                    TImage(_controller.backgroundUrl, fit: BoxFit.cover),
                 onTap: () async {
                   var fileUrl = await router.push(
                       name: MCRouter.photoPicker,
                       arguments: {
-                        MCRouter.key_url: _controller.backgroundUrl.value
+                        MCRouter.key_url: _controller.backgroundUrl
                       });
                   if (fileUrl is String) {
-                    _controller.backgroundUrl.value = fileUrl;
+                    _controller.backgroundUrl= fileUrl;
                     // setState(() {});使用 GetX 不需要setState
                   }
                 }))
