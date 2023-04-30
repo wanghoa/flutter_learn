@@ -7,16 +7,17 @@ class TImage extends StatelessWidget {
   double? width;
   double? height;
   final String url;
+  final fit;// 裁剪 做屏幕适配
 
   // url 必传，其他参数可选 使用{}
-  TImage(this.url, {this.width, this.height});
+  TImage(this.url, {this.width, this.height, this.fit = BoxFit.cover});
 
   @override
   Widget build(BuildContext context) {
     if (url.contains('asset')) {
-      return Image.asset(url, width: width, height: height);
+      return Image.asset(url, width: width, height: height, fit: fit);
     } else {
-      return Image.file(File(url), width: width, height: height);
+      return Image.file(File(url), width: width, height: height, fit: fit);
     }
   }
 }

@@ -24,7 +24,7 @@ class _MinePageState extends State<MinePage> {
         Container(
             width: double.infinity,
             height: image_height,
-            child: TImage(Assets.image.defaultPhoto.path))
+            child: TImage(Assets.image.defaultPhoto.path, fit: BoxFit.cover))
       ],
     );
   }
