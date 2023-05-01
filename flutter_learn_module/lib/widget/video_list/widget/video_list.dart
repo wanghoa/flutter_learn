@@ -7,17 +7,16 @@ import '../../../main.dart';
 import '../../../mc_router.dart';
 import '../controller/video_controller.dart';
 
-
 class VideoList extends StatefulWidget {
   final VideoController controller;
+
   VideoList(this.controller);
+
   @override
   State<StatefulWidget> createState() => _VideoListState();
 }
 
 class _VideoListState extends State<VideoList> {
-
-
   // VideoController _controller = VideoController();
 
   @override
@@ -41,15 +40,41 @@ class _VideoListState extends State<VideoList> {
               //     'https://sample-videos.com/video123/flv/240/big_buck_bunny_240p_10mb.flv';
               return GestureDetector(
                   child: widget.controller.dataList == null
-                      ? Container()
-                      : AbsorbPointer(
-                          absorbing: true,
-                          child: VideoView(Player()
-                            ..setCommonDataSource(
-                              widget.controller.dataList![index].url ,
-                              type: SourceType.asset,
-                              autoPlay: true,
-                            )),
+                      ? Container() // 加载提示或骨架屏
+                      : Stack(
+                          children: [
+                            AbsorbPointer(
+                              absorbing: true,
+                              child: VideoView(
+                                  Player()
+                                    ..setLoop(0)
+                                    ..setCommonDataSource(
+                                      widget.controller.dataList![index].url,
+                                      type: SourceType.asset,
+                                      autoPlay: true,
+                                    ),
+                                  fit: FijkFit.cover),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                bottom: 10,
+                                left: 15,
+                              ),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    'asset/image/play',
+                                    height: 12,
+                                  ),
+                                  Text(
+                                    widget.controller.count.toString(),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 12),
+                                  )
+                                ],
+                              ),
+                            )
+                          ],
                         ),
                   onTap: () async => await router.push(
                       name: MCRouter.playerPage,
