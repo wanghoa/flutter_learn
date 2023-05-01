@@ -70,24 +70,24 @@ class _MinePageState extends State<MinePage> {
         ),
         Padding(
           padding: EdgeInsets.only(top: 5, left: 19),
-          child: Text(
-            _controller.name,
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                decoration: TextDecoration.none),
-          ),
+          child: Obx(() => Text(
+                _controller.name,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.none),
+              )),
         ),
         Padding(
           padding: EdgeInsets.only(top: 5, left: 19),
-          child: Text(
-            _controller.uidDesc,
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: 11,
-                decoration: TextDecoration.none),
-          ),
+          child: Obx(() => Text(
+                _controller.uidDesc,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 11,
+                    decoration: TextDecoration.none),
+              )),
         )
       ],
     );
