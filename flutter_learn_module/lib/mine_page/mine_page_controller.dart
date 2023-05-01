@@ -1,3 +1,5 @@
+import 'package:flutter_learn_module/main.dart';
+import 'package:flutter_learn_module/mc_router.dart';
 import 'package:get/get.dart';
 
 import '../gen/assets.gen.dart';
@@ -34,4 +36,13 @@ class MinePageController extends GetxController {
   String get uidDesc => '幕客:${_uid.value}';
 
   set uidDesc(String desc) => _uid.value = desc;
+
+  Future<void> onTapAvatar() async {
+    var fileUrl = await router.push(
+        name: MCRouter.photoPicker, arguments: {MCRouter.key_url: avatarUrl});
+    // 增加类型判断
+    if (fileUrl is String) {
+      avatarUrl = fileUrl;
+    }
+  }
 }

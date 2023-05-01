@@ -52,7 +52,16 @@ class _MinePageState extends State<MinePage> {
                   color: Color(0xfffefdfd),
                   borderRadius: BorderRadius.vertical(top: Radius.circular(8))),
               child: _buildCard(),
-            ))
+            )),
+        // 头像
+        Padding(
+          padding: EdgeInsets.only(top: 114, left: 19),
+          child: GestureDetector(
+            child: Obx(() =>
+                TImage(_controller.avatarUrl, shape: Shape.CIRCLE, radius: 40)),
+            onTap: _controller.onTapAvatar,
+          ),
+        )
       ],
     );
   }
