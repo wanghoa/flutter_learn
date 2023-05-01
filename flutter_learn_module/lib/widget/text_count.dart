@@ -13,7 +13,7 @@ class TextCount extends StatelessWidget {
       fontSize: 13,
       decoration: TextDecoration
           .none), this.numStyle = const TextStyle(
-      color: Color(0xff151920), fontSize: 13, decoration: TextDecoration.none)})
+      color: Color(0xff151920), fontSize: 13, decoration: TextDecoration.none)});
 
   @override
   Widget build(BuildContext context) {
