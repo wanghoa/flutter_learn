@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_learn_module/gen/assets.gen.dart';
+import 'package:flutter_learn_module/widget/t_image.dart';
 import 'package:player/player.dart';
 import 'package:player/video_view.dart';
 
@@ -18,7 +20,7 @@ class VideoList extends StatefulWidget {
 
 class _VideoListState extends State<VideoList> {
   // VideoController _controller = VideoController();
-
+  // late VideoController _controller;
   @override
   void initState() {
     super.initState();
@@ -41,40 +43,42 @@ class _VideoListState extends State<VideoList> {
               return GestureDetector(
                   child: widget.controller.dataList == null
                       ? Container() // 加载提示或骨架屏
-                      : Stack(
-                          children: [
-                            AbsorbPointer(
-                              absorbing: true,
-                              child: VideoView(
-                                  Player()
-                                    ..setLoop(0)
-                                    ..setCommonDataSource(
-                                      widget.controller.dataList![index].url,
-                                      type: SourceType.asset,
-                                      autoPlay: true,
+                      : Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Color(0xfffef5ff), width: 1)),
+                          child: Stack(
+                            children: [
+                              AbsorbPointer(
+                                absorbing: true,
+                                child: VideoView(
+                                    Player()
+                                      ..setLoop(0)
+                                      ..setCommonDataSource(
+                                        widget.controller.dataList![index].url,
+                                        type: SourceType.asset,
+                                        autoPlay: true,
+                                      ),
                                     ),
-                                  fit: FijkFit.cover),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                bottom: 10,
-                                left: 15,
                               ),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    'asset/image/play',
-                                    height: 12,
-                                  ),
-                                  Text(
-                                    widget.controller.count.toString(),
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 12),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: 10,
+                                  left: 15,
+                                ),
+                                child: Row(
+                                  children: [
+                                  TImage(Assets.image.play.path,height: 12,),
+                                    Text(
+                                      widget.controller.count.toString(),
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 12),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                   onTap: () async => await router.push(
                       name: MCRouter.playerPage,
