@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_learn_module/gen/assets.gen.dart';
 import 'package:flutter_learn_module/main.dart';
 import 'package:flutter_learn_module/mc_router.dart';
 import 'package:flutter_learn_module/mine_page/mine_page_controller.dart';
@@ -49,7 +52,7 @@ class _MinePageState extends State<MinePage> {
       ],
     );
   }
-
+   /// 资料卡
   Widget _buildCard() {
     // 纵向对齐 // SizeBox 通常用占位符
     return Column(
@@ -88,6 +91,50 @@ class _MinePageState extends State<MinePage> {
                     fontSize: 11,
                     decoration: TextDecoration.none),
               )),
+        ),
+        // 分割线
+        Container(
+          height: 1 / MediaQueryData.fromWindow(window).devicePixelRatio,
+          margin: EdgeInsets.only(left: 19, top: 10, right: 19, bottom: 10),
+          color: Color(0xffe1e1e3),
+        ),
+        Container(
+          height: 19,
+          padding: EdgeInsets.only(left: 16),
+          child: Row(
+            children: [
+              Text(
+                '添加介绍',
+                style: TextStyle(
+                    color: Color(0xff72737a),
+                    fontSize: 12,
+                    decoration: TextDecoration.none),
+              ),
+              TImage(
+                Assets.image.edit.path,
+                height: 12,
+              ),
+            ],
+          ),
+          // 关注 按钮
+        ),
+        Padding(
+          padding: EdgeInsets.only(top: 18, left: 16, right: 16),
+          child: Container(
+            alignment: Alignment.center,
+            width: double.infinity,
+            height: 36,
+            decoration: BoxDecoration(
+                color: Color(0xfffe2d54),
+                borderRadius: BorderRadius.circular(4)),
+            child: Text(
+              '关注',
+              style: TextStyle(
+                  color: Color(0xfffbfbfc),
+                  fontSize: 15,
+                  decoration: TextDecoration.none),
+            ),
+          ),
         )
       ],
     );
