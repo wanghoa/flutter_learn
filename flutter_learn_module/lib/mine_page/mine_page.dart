@@ -3,62 +3,107 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn_module/gen/assets.gen.dart';
-import 'package:flutter_learn_module/main.dart';
-import 'package:flutter_learn_module/mc_router.dart';
+
 import 'package:flutter_learn_module/mine_page/mine_page_controller.dart';
 import 'package:flutter_learn_module/widget/t_image.dart';
 import 'package:flutter_learn_module/widget/text_count.dart';
+
 import 'package:get/get.dart';
+
+import '../widget/video_list/controller/favorite_controller.dart';
+import '../widget/video_list/controller/mark_controller.dart';
+import '../widget/video_list/controller/private_controller.dart';
+import '../widget/video_list/controller/public_controller.dart';
+import '../widget/video_list/widget/video_list.dart';
 
 class MinePage extends StatefulWidget {
   @override
   State<MinePage> createState() => _MinePageState();
 }
 
-class _MinePageState extends State<MinePage> {
+class _MinePageState extends State<MinePage>
+    with SingleTickerProviderStateMixin {
   static const image_height = 138.5;
 
   // final _controller = MinePageController();// 这么创建也可以，如果其他页面需要使用controller 需要将它传递过去，所以使用 getX
   final _controller = Get.put(MinePageController());
+  late TabController _tabController;
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _tabController = TabController(length: 4, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-            width: double.infinity,
-            height: image_height,
-            child: GestureDetector(
-                child: TImage(_controller.backgroundUrl, fit: BoxFit.cover),
-                onTap: _controller.onTapBackground)),
+    return NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsS) {
+          return <Widget>[
+            SliverAppBar(
+              pinned: true,
+              floating: true,
+              expandedHeight: 420,
+              flexibleSpace: FlexibleSpaceBar(
+                collapseMode: CollapseMode.pin,
+                background: Stack(
+                  children: [
+                    Container(
+                        width: double.infinity,
+                        height: image_height,
+                        child: GestureDetector(
+                            child: TImage(_controller.backgroundUrl,
+                                fit: BoxFit.cover),
+                            onTap: _controller.onTapBackground)),
 
-        /// 资料卡
-        Padding(
-            padding: EdgeInsets.only(top: image_height - 4),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Color(0xfffefdfd),
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(8))),
-              child: _buildCard(),
-            )),
+                    /// 资料卡
+                    Padding(
+                        padding: EdgeInsets.only(top: image_height - 4),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xfffefdfd),
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(8))),
+                          child: _buildCard(),
+                        )),
 
-        /// 头像
-        Padding(
-          padding: EdgeInsets.only(top: 114, left: 19),
-          child: GestureDetector(
-            child: Obx(() =>
-                TImage(_controller.avatarUrl, shape: Shape.CIRCLE, radius: 40)),
-            onTap: _controller.onTapAvatar,
-          ),
-        )
-      ],
-    );
+                    /// 头像
+                    Padding(
+                      padding: EdgeInsets.only(top: 114, left: 19),
+                      child: GestureDetector(
+                        child: Obx(() => TImage(_controller.avatarUrl,
+                            shape: Shape.CIRCLE, radius: 40)),
+                        onTap: _controller.onTapAvatar,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              bottom: TabBar(
+                labelColor: Color(0xff151822),
+                unselectedLabelColor: Color(0xff77767c),
+                controller: _tabController,
+                tabs: [
+                  Tab(text: '作品'),
+                  Tab(text: '私密'),
+                  Tab(text: '收藏'),
+                  Tab(text: '喜欢'),
+                ],
+              ),
+            )
+          ];
+        },
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            ///todo
+            VideoList(PublicController()),
+            VideoList(PrivateController()),
+            VideoList(MarkController()),
+            VideoList(FavoriteController())
+          ],
+        ));
   }
 
   /// 资料卡
