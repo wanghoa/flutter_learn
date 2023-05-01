@@ -8,6 +8,7 @@ import '../gen/assets.gen.dart';
 class MinePageController extends GetxController {
   //GetX 改造步骤3 给变量添加 .obs
   var _backgroundUrl = Assets.image.defaultPhoto.path.obs;
+  var _avatarUrl = Assets.image.avatar.path.obs;
 
   String get backgroundUrl => _backgroundUrl.value;
 
@@ -18,8 +19,6 @@ class MinePageController extends GetxController {
   String get focusCount => '85225';
 
   String get followCount => '12567';
-
-  var _avatarUrl = Assets.image.avatar.path.obs;
 
   var _name = 'wanghao'.obs;
   var _uid = '365'.obs;
@@ -37,6 +36,14 @@ class MinePageController extends GetxController {
 
   set uidDesc(String desc) => _uid.value = desc;
 
+  Future<void> onTapBackground() async{
+    var fileUrl = await router.push(name: MCRouter.photoPicker,arguments: {MCRouter.key_url: backgroundUrl});
+    // 增加类型判断
+    if (fileUrl is String) {
+      backgroundUrl = fileUrl;
+    }
+
+  }
   Future<void> onTapAvatar() async {
     var fileUrl = await router.push(
         name: MCRouter.photoPicker, arguments: {MCRouter.key_url: avatarUrl});

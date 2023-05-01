@@ -36,15 +36,9 @@ class _MinePageState extends State<MinePage> {
             height: image_height,
             child: GestureDetector(
                 child: TImage(_controller.backgroundUrl, fit: BoxFit.cover),
-                onTap: () async {
-                  var fileUrl = await router.push(
-                      name: MCRouter.photoPicker,
-                      arguments: {MCRouter.key_url: _controller.backgroundUrl});
-                  if (fileUrl is String) {
-                    _controller.backgroundUrl = fileUrl;
-                    // setState(() {});使用 GetX 不需要setState
-                  }
-                })),
+                onTap: _controller.onTapBackground)),
+
+        /// 资料卡
         Padding(
             padding: EdgeInsets.only(top: image_height - 4),
             child: Container(
@@ -53,7 +47,8 @@ class _MinePageState extends State<MinePage> {
                   borderRadius: BorderRadius.vertical(top: Radius.circular(8))),
               child: _buildCard(),
             )),
-        // 头像
+
+        /// 头像
         Padding(
           padding: EdgeInsets.only(top: 114, left: 19),
           child: GestureDetector(
@@ -86,7 +81,7 @@ class _MinePageState extends State<MinePage> {
           ],
         ),
         Padding(
-          padding: EdgeInsets.only(top: 5, left: 19),
+          padding: EdgeInsets.only(top: 55, left: 19),
           child: Obx(() => Text(
                 _controller.name,
                 style: TextStyle(
