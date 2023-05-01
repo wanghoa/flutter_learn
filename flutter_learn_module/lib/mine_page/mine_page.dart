@@ -46,13 +46,18 @@ class _MinePageState extends State<MinePage> {
                   }
                 })),
         Padding(
-          padding: EdgeInsets.only(top: image_height - 4),
-          child: _buildCard(),
-        )
+            padding: EdgeInsets.only(top: image_height - 4),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Color(0xfffefdfd),
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(8))),
+              child: _buildCard(),
+            ))
       ],
     );
   }
-   /// 资料卡
+
+  /// 资料卡
   Widget _buildCard() {
     // 纵向对齐 // SizeBox 通常用占位符
     return Column(
