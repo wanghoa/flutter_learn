@@ -1,3 +1,4 @@
+import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_learn_module/gen/assets.gen.dart';
@@ -34,7 +35,7 @@ class _VideoListState extends State<VideoList> {
     return Scaffold(
         body: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3),
+                crossAxisCount: 3, childAspectRatio: 0.75),
             itemCount: widget.controller.dataList?.length,
             itemBuilder: (context, index) {
               //实际项目中，通过DataList[index]获取url
@@ -46,35 +47,42 @@ class _VideoListState extends State<VideoList> {
                       : Container(
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  color: Color(0xfffef5ff), width: 1)),
+                                  color: const Color(0xfffef5ff), width: 0)),
                           child: Stack(
                             children: [
                               AbsorbPointer(
                                 absorbing: true,
                                 child: VideoView(
-                                    Player()
-                                      ..setLoop(0)
-                                      ..setCommonDataSource(
-                                        widget.controller.dataList![index].url,
-                                        type: SourceType.asset,
-                                        autoPlay: true,
-                                      ),
+                                  Player()
+                                    ..setLoop(0)
+                                    ..setCommonDataSource(
+                                      widget.controller.dataList![index].url,
+                                      type: SourceType.net,
+                                      autoPlay: true,
                                     ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  bottom: 10,
-                                  left: 15,
+                                  fit: FijkFit.cover,
                                 ),
-                                child: Row(
-                                  children: [
-                                  TImage(Assets.image.play.path,height: 12,),
-                                    Text(
-                                      widget.controller.count.toString(),
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 12),
-                                    )
-                                  ],
+                              ),
+                              Align(
+                                alignment: Alignment.bottomLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                    bottom: 10,
+                                    left: 15,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      TImage(
+                                        Assets.image.play.path,
+                                        height: 12,
+                                      ),
+                                      Text(
+                                        widget.controller.count.toString(),
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 12),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               )
                             ],
